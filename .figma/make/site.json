@@ -1,0 +1,10 @@
+{
+  "description": "Provides a comprehensive online platform for church members to access events, sermons, and community resources, enhancing engagement and communication.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
