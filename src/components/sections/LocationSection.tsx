@@ -70,26 +70,20 @@ export default function LocationSection() {
             </div>
           </div>
 
-          {/* Map placeholder */}
-          <div className="relative rounded-lg overflow-hidden bg-[#E8D5D5] aspect-[4/3]">
-            <img
-              src="https://images.unsplash.com/photo-1569336415962-a4bd9f69c054?w=800&h=600&fit=crop&auto=format"
-              alt="Map location placeholder — Mtwapa, Mombasa"
-              className="w-full h-full object-cover"
+          {/* Map — OpenStreetMap embed pinned on Mtwapa, Mombasa */}
+          <div className="relative rounded-lg overflow-hidden aspect-[4/3] shadow-sm border border-gray-100">
+            <iframe
+              title="HOFPAN location — Mtwapa, Mombasa"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=39.7%2C-3.97%2C39.77%2C-3.91&layer=mapnik&marker=-3.943%2C39.734"
+              className="w-full h-full border-0"
               loading="lazy"
+              allowFullScreen
+              aria-label="Map showing Mtwapa, Mombasa"
             />
-            <div className="absolute inset-0 bg-[#A82626]/10" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg px-6 py-4 text-center shadow-lg">
-                <div className="w-10 h-10 bg-[#A82626] rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
-                    <path d="M8 1C5.2 1 3 3.2 3 6c0 4 5 9 5 9s5-5 5-9c0-2.8-2.2-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" />
-                  </svg>
-                </div>
-                <p className="font-serif font-semibold text-[#111111] text-sm">HOFPAN</p>
-                <p className="font-sans text-xs text-[#6B7280] mt-1">Mtwapa, Mombasa</p>
-                <p className="font-sans text-xs text-[#6B7280]">[Address to be confirmed]</p>
-              </div>
+            {/* Branded pin overlay */}
+            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded px-3 py-2 shadow text-xs font-sans pointer-events-none">
+              <span className="font-semibold text-[#111111]">HOFPAN</span>
+              <span className="text-[#6B7280] ml-1">· Mtwapa, Mombasa</span>
             </div>
           </div>
         </div>
