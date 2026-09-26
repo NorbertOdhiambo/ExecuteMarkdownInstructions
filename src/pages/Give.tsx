@@ -1,17 +1,116 @@
 import { useState } from "react";
 
-export default function Give() {
+function useCopy(text: string) {
   const [copied, setCopied] = useState(false);
-
-  const copyAccount = () => {
-    navigator.clipboard.writeText("1190282585415").then(() => {
+  const copy = () => {
+    navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     });
   };
+  return { copied, copy };
+}
 
+function PayPalIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M7.5 21H3L5.5 5h7c3.5 0 5.5 1.5 5 4.5C17 13 14.5 14.5 11 14.5H8.5L7.5 21z"
+        stroke="#6B7280"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.5 14.5H8L7 21h4.5c3.5 0 5.5-1.5 5-4.5-.3-1.8-1.8-2.5-4-2z"
+        stroke="#6B7280"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function WesternUnionIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="#6B7280" strokeWidth="1.5" />
+      <path d="M8 8l2 8M12 8v8M16 8l-2 8" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function BankIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 10h18M3 14h18M5 6l7-3 7 3M5 18v-8M19 18v-8M3 18h18" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+interface CopyRowProps {
+  label: string;
+  value: string;
+  buttonLabel: string;
+  successLabel?: string;
+  mono?: boolean;
+}
+
+function CopyRow({ label, value, buttonLabel, successLabel = "Copied!", mono = false }: CopyRowProps) {
+  const { copied, copy } = useCopy(value);
+  return (
+    <div className="bg-[#F8F6F3] rounded-lg p-5">
+      <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-2">{label}</p>
+      <div className="flex items-center gap-3 flex-wrap">
+        <p className={`${mono ? "font-mono text-lg tracking-wider" : "text-sm"} font-semibold text-[#111111] break-all leading-snug`}>
+          {value}
+        </p>
+        <button
+          onClick={copy}
+          aria-label={copied ? successLabel : `${buttonLabel}: ${value}`}
+          className="flex-shrink-0 px-3 py-1.5 text-xs font-sans bg-[#A82626] text-white rounded hover:bg-[#8a1f1f] active:bg-[#7F1D1D] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A82626] focus-visible:ring-offset-2 min-h-[32px]"
+        >
+          {copied ? successLabel : buttonLabel}
+        </button>
+      </div>
+      {copied && (
+        <p role="status" aria-live="polite" className="mt-2 text-[#A82626] text-xs font-sans">
+          {successLabel}
+        </p>
+      )}
+    </div>
+  );
+}
+
+interface MethodCardProps {
+  icon: React.ReactNode;
+  title: string;
+  children: React.ReactNode;
+  note?: string;
+}
+
+function MethodCard({ icon, title, children, note }: MethodCardProps) {
+  return (
+    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 sm:p-10">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-9 h-9 rounded bg-[#F8F6F3] flex items-center justify-center flex-shrink-0">
+          {icon}
+        </div>
+        <h2 className="font-serif text-xl font-semibold text-[#111111]">{title}</h2>
+      </div>
+      <div className="space-y-4">{children}</div>
+      {note && (
+        <p className="mt-5 text-[#6B7280] text-xs font-sans leading-relaxed border-t border-gray-100 pt-5">
+          {note}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export default function Give() {
   return (
     <main>
+      {/* Page hero */}
       <div className="relative bg-[#111111] pt-32 pb-20">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -27,67 +126,104 @@ export default function Give() {
       </div>
 
       <section className="py-20 bg-[#F8F6F3]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
           {/* Why give */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
             <p className="text-[#A82626] text-xs font-sans uppercase tracking-widest mb-4">Why Give</p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#111111] mb-6">Your Giving Makes a Difference</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#111111] mb-5">
+              Your Giving Makes a Difference
+            </h2>
             <p className="text-[#6B7280] font-sans text-base leading-relaxed max-w-2xl mx-auto">
-              Every gift supports Sunday feeding programs, children's Sunday School, youth ministry, women's fellowship, community care for orphans and vulnerable children, and "Jesus in the Village" evangelistic crusades.
+              Every gift supports Sunday feeding programs, children's Sunday School, youth ministry, women's fellowship, community care for orphans and vulnerable children, and <em>"Jesus in the Village"</em> evangelistic crusades.
             </p>
           </div>
 
-          {/* Account details */}
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 sm:p-12 mb-10">
-            <h3 className="font-serif text-2xl font-semibold text-[#111111] mb-8">Bank Transfer</h3>
+          {/* Payment methods */}
+          <div className="space-y-6">
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            {/* 1 — Bank Transfer */}
+            <MethodCard
+              icon={<BankIcon />}
+              title="Bank Transfer"
+              note="Please verify account details with church leadership before making a transfer."
+            >
+              <CopyRow
+                label="Account Name"
+                value="Spring Of Miracles Ministry / House Of Prayer For All Nations"
+                buttonLabel="Copy"
+                successLabel="Copied!"
+              />
+              <CopyRow
+                label="Account Number"
+                value="1190282585415"
+                buttonLabel="Copy"
+                successLabel="Copied!"
+                mono
+              />
               <div className="bg-[#F8F6F3] rounded-lg p-5">
-                <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-2">Account Name</p>
-                <p className="font-sans text-sm font-medium text-[#111111] leading-relaxed">
-                  Spring Of Miracles Ministry /<br />House Of Prayer For All Nations
+                <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-2">Other Methods</p>
+                <p className="text-[#6B7280] text-sm font-sans">
+                  [Mobile money and additional payment methods to be confirmed]
                 </p>
               </div>
+            </MethodCard>
 
+            {/* 2 — PayPal */}
+            <MethodCard
+              icon={<PayPalIcon />}
+              title="PayPal"
+              note="Send your gift to the PayPal email address above. Do not send to any other address."
+            >
               <div className="bg-[#F8F6F3] rounded-lg p-5">
-                <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-2">Account Number</p>
-                <div className="flex items-center gap-3">
-                  <p className="font-mono text-lg font-semibold text-[#111111] tracking-wider">1190282585415</p>
-                  <button
-                    onClick={copyAccount}
-                    className="flex-shrink-0 px-3 py-1.5 text-xs font-sans bg-[#A82626] text-white rounded hover:bg-[#8a1f1f] transition-colors"
-                    aria-label="Copy account number"
-                  >
-                    {copied ? "Copied!" : "Copy"}
-                  </button>
-                </div>
+                <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-2">Account Name</p>
+                <p className="font-sans text-sm font-semibold text-[#111111]">Stephen Iha</p>
               </div>
-            </div>
+              <CopyRow
+                label="PayPal Email"
+                value="kkarisa810@gmail.com"
+                buttonLabel="Copy Email"
+                successLabel="Email copied!"
+              />
+            </MethodCard>
 
-            <div className="border-t border-gray-100 pt-6">
-              <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-3">Other Giving Methods</p>
-              <p className="text-[#6B7280] font-sans text-sm">
-                [Mobile money and additional payment methods to be confirmed by church leadership]
-              </p>
-            </div>
+            {/* 3 — Western Union */}
+            <MethodCard
+              icon={<WesternUnionIcon />}
+              title="Western Union"
+              note="Use the recipient name exactly as shown above when completing your Western Union transfer. Contact us if you need further assistance."
+            >
+              <CopyRow
+                label="Recipient Name"
+                value="Stephen Karisa Iha"
+                buttonLabel="Copy Name"
+                successLabel="Name copied!"
+              />
+              <div className="bg-[#F8F6F3] rounded-lg p-5">
+                <p className="text-[#6B7280] text-sm font-sans leading-relaxed">
+                  Use the recipient name above when sending a Western Union transfer. Additional transfer details will be confirmed by church leadership.
+                </p>
+              </div>
+            </MethodCard>
 
-            <div className="mt-8 bg-[#F8F6F3] rounded-lg p-5">
-              <p className="text-[#6B7280] text-xs font-sans leading-relaxed">
-                ⚠️ <strong className="text-[#111111]">Please verify:</strong> Account details displayed are subject to confirmation by church leadership before the public launch of this website. If in doubt, please contact the church directly before making a transfer.
-              </p>
-            </div>
           </div>
 
-          {/* Future integration note */}
-          <div className="bg-[#A82626] rounded-xl p-8 text-center">
-            <h3 className="font-serif text-2xl font-bold text-white mb-4">Online Giving</h3>
-            <p className="text-white/80 font-sans text-base mb-6">
-              Secure online giving will be available once a payment provider is connected. For now, please use bank transfer details above.
+          {/* Online giving placeholder */}
+          <div className="mt-8 bg-[#A82626] rounded-xl p-8 text-center">
+            <h3 className="font-serif text-2xl font-bold text-white mb-3">Secure Online Giving</h3>
+            <p className="text-white/80 font-sans text-base mb-4">
+              An integrated online giving link will be added once confirmed by church leadership.
             </p>
-            <p className="text-white/60 text-xs font-sans">
-              [ONLINE GIVING URL TO BE CONFIRMED]
+            <p className="text-white/40 text-xs font-sans">[ONLINE GIVING URL TO BE CONFIRMED]</p>
+          </div>
+
+          {/* Verification notice */}
+          <div className="mt-8 bg-white border border-gray-100 rounded-xl p-6">
+            <p className="text-[#6B7280] text-xs font-sans leading-relaxed">
+              ⚠️ <strong className="text-[#111111]">Please verify:</strong> All giving account details are subject to final confirmation by church leadership before the public launch of this website. If in doubt, contact the church directly before making any transfer.
             </p>
           </div>
+
         </div>
       </section>
     </main>
