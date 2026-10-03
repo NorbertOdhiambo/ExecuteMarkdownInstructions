@@ -48,8 +48,10 @@ export default function GivingSection() {
                 </div>
               </div>
               <div>
-                <p className="text-white/50 text-xs font-sans uppercase tracking-widest mb-2">Other Methods</p>
-                <p className="text-white/40 text-sm font-sans">[Mobile money and additional giving methods to be confirmed]</p>
+                <p className="text-white text-sm font-sans font-medium mb-2">M-Pesa Paybill</p>
+                <p className="text-white/50 text-xs font-sans uppercase tracking-widest mb-1">Paybill Number</p>
+                <p className="text-white/80 text-sm font-sans font-mono tracking-wider">247247</p>
+                <p className="mt-3 text-white/50 text-xs font-sans">View all giving methods and verification details on the Give page.</p>
               </div>
             </div>
             <p className="text-white/30 text-xs font-sans mt-6 leading-relaxed">

@@ -34,8 +34,8 @@ export default function LocationSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-sans text-xs uppercase tracking-widest text-[#6B7280] mb-1">Sunday Worship</p>
-                  <p className="font-sans text-base text-[#111111] font-medium">[Service time to be confirmed]</p>
+                  <p className="font-sans text-xs uppercase tracking-widest text-[#6B7280] mb-1">Sunday Services</p>
+                  <p className="font-sans text-base text-[#111111] font-medium">9:00 AM – 3:00 PM</p>
                 </div>
               </div>
 

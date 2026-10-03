@@ -11,6 +11,8 @@ import LeadershipSection from "../components/sections/LeadershipSection";
 import LocationSection from "../components/sections/LocationSection";
 import GivingSection from "../components/sections/GivingSection";
 import ConnectSection from "../components/sections/ConnectSection";
+import WeeklySchedule from "../components/sections/WeeklySchedule";
+import CommunityImpactSection from "../components/sections/CommunityImpactSection";
 
 export default function Home() {
   return (
@@ -18,10 +20,12 @@ export default function Home() {
       <HeroCarousel />
       <ServiceBar />
       <WelcomeSection />
+      <WeeklySchedule />
       <MissionSection />
       <ScriptureSection />
       <SermonsSection />
       <MinistriesSection />
+      <CommunityImpactSection />
       <EventsSection />
       <PrayerSection />
       <LeadershipSection />

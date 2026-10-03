@@ -88,8 +88,8 @@ export default function Footer() {
                 </a>
               </div>
               <div>
-                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Sunday Worship</p>
-                <p>[Service time to be confirmed]</p>
+                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Sunday Services</p>
+                <p>9:00 AM – 3:00 PM</p>
               </div>
             </div>
           </div>

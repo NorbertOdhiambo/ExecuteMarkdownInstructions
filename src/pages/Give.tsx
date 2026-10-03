@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../components/ui/Button";
 
 function useCopy(text: string) {
   const [copied, setCopied] = useState(false);
@@ -47,6 +48,16 @@ function BankIcon() {
   );
 }
 
+function MobileMoneyIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="7" y="2.5" width="10" height="19" rx="2" stroke="#6B7280" strokeWidth="1.5" />
+      <path d="M10 5h4M10.5 18.5h3" stroke="#6B7280" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M9.5 10.5h5M12 8v5" stroke="#A82626" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 interface CopyRowProps {
   label: string;
   value: string;
@@ -64,13 +75,14 @@ function CopyRow({ label, value, buttonLabel, successLabel = "Copied!", mono = f
         <p className={`${mono ? "font-mono text-lg tracking-wider" : "text-sm"} font-semibold text-[#111111] break-all leading-snug`}>
           {value}
         </p>
-        <button
+        <Button
           onClick={copy}
           aria-label={copied ? successLabel : `${buttonLabel}: ${value}`}
-          className="flex-shrink-0 px-3 py-1.5 text-xs font-sans bg-[#A82626] text-white rounded hover:bg-[#8a1f1f] active:bg-[#7F1D1D] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A82626] focus-visible:ring-offset-2 min-h-[32px]"
+          size="sm"
+          className="min-h-11 flex-shrink-0"
         >
           {copied ? successLabel : buttonLabel}
-        </button>
+        </Button>
       </div>
       {copied && (
         <p role="status" aria-live="polite" className="mt-2 text-[#A82626] text-xs font-sans">
@@ -162,14 +174,57 @@ export default function Give() {
                 mono
               />
               <div className="bg-[#F8F6F3] rounded-lg p-5">
-                <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-2">Other Methods</p>
+                <p className="text-[#6B7280] text-xs font-sans uppercase tracking-widest mb-2">More Ways to Give</p>
                 <p className="text-[#6B7280] text-sm font-sans">
-                  [Mobile money and additional payment methods to be confirmed]
+                  M-Pesa Paybill, PayPal, and Western Union are available below.
                 </p>
               </div>
             </MethodCard>
 
-            {/* 2 — PayPal */}
+            {/* 2 — M-Pesa */}
+            <MethodCard
+              icon={<MobileMoneyIcon />}
+              title="M-PESA"
+              note="These proposed payment details, including the account reference, must be confirmed by church leadership before launch."
+            >
+              <div>
+                <p className="mb-4 font-serif text-xl font-semibold text-[#111111]">
+                  Give via M-Pesa Paybill
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <CopyRow
+                    label="Paybill Number"
+                    value="247247"
+                    buttonLabel="Copy Paybill Number"
+                    successLabel="Paybill number copied!"
+                    mono
+                  />
+                  <CopyRow
+                    label="Account Number"
+                    value="1190282585415"
+                    buttonLabel="Copy Account Number"
+                    successLabel="Account number copied!"
+                    mono
+                  />
+                </div>
+              </div>
+              <div className="rounded-lg border border-gray-100 p-5">
+                <p className="mb-4 font-sans text-xs font-semibold uppercase tracking-widest text-[#A82626]">
+                  How to Give
+                </p>
+                <ol className="list-decimal space-y-2 pl-5 font-sans text-sm leading-relaxed text-[#6B7280]">
+                  <li>Open M-Pesa on your phone.</li>
+                  <li>Select <strong className="text-[#111111]">Lipa na M-Pesa</strong>.</li>
+                  <li>Select <strong className="text-[#111111]">Pay Bill</strong>.</li>
+                  <li>Enter the Paybill Number: <strong className="text-[#111111]">247247</strong>.</li>
+                  <li>Enter the Account Number: <strong className="text-[#111111]">1190282585415</strong>.</li>
+                  <li>Enter the amount you wish to give.</li>
+                  <li>Confirm the payment details and complete the transaction using your M-Pesa PIN.</li>
+                </ol>
+              </div>
+            </MethodCard>
+
+            {/* 3 — PayPal */}
             <MethodCard
               icon={<PayPalIcon />}
               title="PayPal"
@@ -187,7 +242,7 @@ export default function Give() {
               />
             </MethodCard>
 
-            {/* 3 — Western Union */}
+            {/* 4 — Western Union */}
             <MethodCard
               icon={<WesternUnionIcon />}
               title="Western Union"
@@ -220,7 +275,7 @@ export default function Give() {
           {/* Verification notice */}
           <div className="mt-8 bg-white border border-gray-100 rounded-xl p-6">
             <p className="text-[#6B7280] text-xs font-sans leading-relaxed">
-              ⚠️ <strong className="text-[#111111]">Please verify:</strong> All giving account details are subject to final confirmation by church leadership before the public launch of this website. If in doubt, contact the church directly before making any transfer.
+              <strong className="text-[#111111]">Please verify:</strong> All giving account details are subject to final confirmation by church leadership before the public launch of this website. The M-Pesa account reference is proposed from the supplied bank account number and requires specific confirmation. If in doubt, contact the church directly before making any transfer.
             </p>
           </div>
 

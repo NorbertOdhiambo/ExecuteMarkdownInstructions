@@ -67,8 +67,8 @@ export default function Contact() {
                     },
                     {
                       icon: "⏰",
-                      label: "Sunday Service",
-                      value: "[Service time to be confirmed]",
+                      label: "Sunday Services",
+                      value: "9:00 AM – 3:00 PM",
                       href: null,
                     },
                   ].map((item) => (

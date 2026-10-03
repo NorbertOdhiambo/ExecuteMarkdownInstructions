@@ -110,8 +110,8 @@ export default function HeroCarousel() {
         {/* Service info bottom */}
         <div className="absolute bottom-24 left-6 sm:left-10 lg:left-16 right-6 flex items-end justify-between">
           <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded px-5 py-3">
-            <p className="text-white/50 text-xs font-sans uppercase tracking-widest mb-1">Sunday Worship</p>
-            <p className="text-white text-sm font-sans font-medium">[Service time to be confirmed]</p>
+            <p className="text-white/50 text-xs font-sans uppercase tracking-widest mb-1">Sunday Services</p>
+            <p className="text-white text-sm font-sans font-medium">9:00 AM – 3:00 PM</p>
           </div>
         </div>
       </div>

@@ -8,8 +8,8 @@ const items = [
         <path d="M10 6v4l2.5 2.5" />
       </svg>
     ),
-    label: "Sunday Worship",
-    value: "[Service time to be confirmed]",
+    label: "Sunday Services",
+    value: "9:00 AM – 3:00 PM",
     to: "/plan-visit",
   },
   {
