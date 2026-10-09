@@ -47,3 +47,26 @@ h1, h2, h3, h4 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.gallery-rotated-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1600 / 901;
+  overflow: hidden;
+}
+
+.gallery-rotated-frame--lightbox {
+  width: min(100%, calc((100vh - 9rem) * 1.7758));
+}
+
+.gallery-rotated-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 56.3125%;
+  height: 177.58%;
+  max-width: none;
+  object-fit: contain;
+  image-orientation: none;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
